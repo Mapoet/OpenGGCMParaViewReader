@@ -1,0 +1,58 @@
+<ServerManagerConfiguration>
+  <ProxyGroup name="sources">
+    <!-- ***************************
+         *    open ggcm reader     *
+         *************************** -->
+    <SourceProxy name="vtkOpenGGCM3dfReader" class="vtkOpenGGCM3dfReader">
+
+      <!-- File to read -->
+      <StringVectorProperty
+        name="FileName"
+        command="SetFileName"
+        number_of_elements="1">
+        <FileListDomain name="files"/>
+      </StringVectorProperty>
+
+      <!-- Times or steps -->
+      <DoubleVectorProperty
+          name="TimestepValues"
+          information_only="1">
+        <TimeStepsInformationHelper/>
+        <Documentation>
+        Available timestep values.
+        </Documentation>
+      </DoubleVectorProperty>
+
+      <!-- Array selection -->
+      <StringVectorProperty
+          name="PointArrayInfo"
+          information_only="1">
+        <ArraySelectionInformationHelper attribute_name="Point"/>
+      </StringVectorProperty>
+      <StringVectorProperty
+          name="PointArrayStatus"
+          command="SetPointArrayStatus"
+          number_of_elements="0"
+          repeat_command="1"
+          number_of_elements_per_command="2"
+          element_types="2 0"
+          information_property="PointArrayInfo"
+          label="Arrays">
+        <ArraySelectionDomain name="array_list">
+          <RequiredProperties>
+            <Property name="PointArrayInfo" function="ArrayList"/>
+          </RequiredProperties>
+        </ArraySelectionDomain>
+        <Documentation>
+          Availabel arrays.
+        </Documentation>
+      </StringVectorProperty>
+
+      <Hints>
+        <ReaderFactory extensions="ggcm" file_description="OpenGGCM" />
+        <View type="RenderView"/>
+      </Hints>
+    </SourceProxy>
+
+  </ProxyGroup>
+</ServerManagerConfiguration>

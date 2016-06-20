@@ -1,0 +1,7 @@
+
+<ParaViewReaders>
+
+  <Proxy group="sources" name="vtkOpenGGCM3dfReader" />
+
+</ParaViewReaders>
+
